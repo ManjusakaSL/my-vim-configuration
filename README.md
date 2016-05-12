@@ -34,3 +34,7 @@
 		sudo make VIMRUNTIMEDIR=/usr/share/vim/vim74
 
 		sudo make install
+
+	参考: https://github.com/Valloric/YouCompleteMe 安装YouCompleteMe
+
+
