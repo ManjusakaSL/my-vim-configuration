@@ -25,7 +25,7 @@ sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev 
 下载最新版本的vim7.4: ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2 
 
 解压后，进入vim74目录，配置需要安装的vim 
-./configure –with-features=huge –enable-pythoninterp –with-python-config-dir=/usr/lib/python2.7/config –enable-cscope –enable-multibyte –prefix=/usr
+./configure --with-features=huge --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config --enable-cscope --enable-multibyte --prefix=/usr
 
 	--with-features=huge：支持最大特性
 	--enable-pythoninterp：启用Vim对python编写的插件的支持
