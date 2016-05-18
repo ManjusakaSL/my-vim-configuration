@@ -5,8 +5,8 @@
 安装ctags:
 	sudo apt-get install ctags
 
-
 <----------------------------------------------YouCompleteMe---------------------------------------------->
+
 	若vim不支持python:
 		完全卸载掉之前的vim: 
 		sudo apt-get remove vim 
