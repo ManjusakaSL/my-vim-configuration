@@ -32,8 +32,8 @@
 				--prefix=/usr：编译安装路径
 
 		需要重新配置可 输入 make distclean #清理一下上一次编译生成的所有文件。
-		sudo make VIMRUNTIMEDIR=/usr/share/vim/vim74
 
-		sudo make install
+	sudo make VIMRUNTIMEDIR=/usr/share/vim/vim74
+	sudo make install
 
 	vim支持python后，参考: https://github.com/Valloric/YouCompleteMe 安装YouCompleteMe
