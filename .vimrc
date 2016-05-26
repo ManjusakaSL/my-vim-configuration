@@ -5,7 +5,7 @@ set number
 set tabstop=4
 set shiftwidth=4
 set autoindent
-set backup
+set nobackup
 set ruler
 "set showmode
 set incsearch
@@ -54,12 +54,13 @@ let g:syntastic_check_on_wq = 0
 " map
 map			 <C-p>				"+gP
 map  		 <F5> 				:call CompileRunGcc()<CR>
-map			 <F4> 				:call Rungdb()<CR>map <F8> :call Rungdb()<CR>	
 map			 <F2>				:!pydoc 
-map  		 <F7>               :!g++ %
+map          <F3>               :call InsertCppCode()<CR>
+map          <F4>               :call Debug()<CR>
 nmap 		 <C-a>				gg<S-v>G
 nmap 		 <leader>n 			<plug>NERDTreeTabsToggle<CR>    
 nmap		 <leader>t			:TagbarToggle<CR>   
+nmap         <leader>w          :resize 10<CR>
 vmap		 <C-c>				"+y
 
 
@@ -108,7 +109,7 @@ let g:ycm_confirm_extra_conf = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:ycm_autoclose_preview_window_after_completion= 1
 
-" autoadd code 
+" autoadd python code 
 function InsertPythonComment()
     exe 'normal'.1.'G'
     let line = getline('.')
@@ -129,15 +130,32 @@ function InsertCommentWhenOpen()
 endfunc
 au FileType python :%call InsertCommentWhenOpen()
 
+" autoadd cpp code
+function InsertCppCode()
+    normal i
+    call setline('.', '#include <iostream>')
+    normal o
+	normal o
+    call setline('.', 'using namespace std;')
+    normal o
+    normal o
+    call setline('.', 'int main()')
+	normal o
+    call setline('.', '{')
+	normal o
+    call setline('.', '    return 0;')
+	normal o
+    call setline('.', '}')
+endfunction
 
 " C/C++，java，python compile and run
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-    	exec "!g++ % -o %<"
+    	exec "!g++ -g % -o %<"
         exec "! ./%<"
     elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
+        exec "!g++ -g % -o %<"
         exec "! ./%<"
     elseif &filetype == 'java' 
         exec "!javac %" 
@@ -151,18 +169,13 @@ func! CompileRunGcc()
 endfunc
 
 " C/C++ debug
-func! Rungdb()
-    exec "w"
-	if &filetype == 'c'
-    	exec "!g++ % -g -o %<"
-    	exec "!gdb ./%<"
-	elseif &filetype == 'cpp'
-    	exec "!g++ % -g -o %<"
-    	exec "!gdb ./%<"
-	elseif &filetype == 'py'
-        exec "!python %"
-		exec "!pdb ./%<"
+func! Debug()
+	exec "!g++ -g % -o %<"
+	let g:pyclewn_args = "--window=none"
+	exec "Pyclewn"
+	exec "Cfile %<" 
+	exec "Cinferiortty"
+	exec "Cmapkeys"
 endfunc
-
 
 filetype plugin indent on

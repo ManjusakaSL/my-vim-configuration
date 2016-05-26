@@ -6,6 +6,13 @@
 
 	sudo apt-get install ctags
 
+,t 开关tagbar
+
+
+<------------------------------------------------NERDTree------------------------------------------------->
+
+,n 开关NERDTree
+
 <----------------------------------------------YouCompleteMe---------------------------------------------->
 
 若vim不支持python:
@@ -49,3 +56,19 @@ sudo make VIMRUNTIMEDIR=/usr/share/vim/vim74
 sudo make install
 
 vim支持python后，参考: https://github.com/Valloric/YouCompleteMe 安装YouCompleteMe
+
+<-------------------------------------------------pyclewn------------------------------------------------->
+
+<F4> 调试
+
+设置断点: Cbreak num 或者　CTRL-b 设置光标所在行为断点
+
+清除光标所在行断点： CTRL-k
+
+运行到下一个断点: R
+	
+单步执行跳过函数: CTRL-n
+
+单步执行不跳过函数: S
+
+查看变量: Cdbgvar varname
