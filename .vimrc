@@ -109,28 +109,6 @@ let g:ycm_confirm_extra_conf = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:ycm_autoclose_preview_window_after_completion= 1
 
-" autoadd python code 
-"function InsertPythonComment()
-"    exe 'normal'.1.'G'
-"    let line = getline('.')
-"    if line =~ '^#!.*$' || line =~ '^#.*coding:.*$'
-"        return
-"    endif
-"    normal i
-"    call setline('.', '#!/usr/bin/env python')
-"    normal o
-"    call setline('.', '# -*- coding:utf-8 -*-')
-"    normal o
-"    normal o
-"endfunction
-"function InsertCommentWhenOpen()
-"	normal gg 
-"    if a:lastline == 1 && !getline('.')
-"        call InsertPythonComment()
-"    end
-"endfunc
-"au FileType python :%call InsertCommentWhenOpen()
-
 " autoadd code
 function InsertPythonCode()
     if a:lastline == 1 && !getline('.')
@@ -167,6 +145,7 @@ function InsertCode()
 		%call InsertPythonCode()
 	end
 endfunction
+au FileType python :normal gg
 
 " C/C++，java，python compile and run
 func! CompileRunGcc()
