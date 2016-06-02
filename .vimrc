@@ -1,19 +1,38 @@
 set nocompatible
-set history=500
+set backspace=indent,eol,start
+set incsearch
+set autoindent
+set history=50
+set ruler
+set showmode
 set hlsearch
 set number
 set tabstop=4
 set shiftwidth=4
-set autoindent
 set nobackup
-set ruler
-"set showmode
-set incsearch
-" 搜索到达文件尾就结束 set wrapscan
-" 搜索忽略大小写 set ignorecase
-set backspace=2 " 退格键可用
-colorscheme torte
+set background=dark
+if has('gui_running')
+	colorscheme solarized
+else
+    colorscheme torte
+endif
 let mapleader=","
+
+" map
+map          Q                  gq
+map			 <F2>				:!pydoc 
+map			 <F3>               :call InsertCode()<CR>
+map          <F4>               :call Debug()<CR>
+map  		 <F5> 				:call CompileRunGcc()<CR>
+map			 <C-p>				"+gP
+nmap         \p                 i(<Esc>ea)<Esc> 
+nmap         \c                 i{<Esc>ea}<Esc> 
+nmap 		 <C-a>				ggVG
+nmap 		 <leader>n 			<plug>NERDTreeTabsToggle<CR>    
+nmap		 <leader>t			:TagbarToggle<CR>   
+nmap         <leader>w          :resize 10<CR>
+vmap		 <C-c>				"+y
+vmap         <C-x>              "+x
 
 " Pathogen load
 call pathogen#infect()
@@ -50,32 +69,15 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-
-" map
-map			 <C-p>				"+gP
-map  		 <F5> 				:call CompileRunGcc()<CR>
-map			 <F2>				:!pydoc 
-map          <F4>               :call Debug()<CR>
-map			 <F3>               :call InsertCode()<CR>
-nmap 		 <C-a>				ggVG
-nmap 		 <leader>n 			<plug>NERDTreeTabsToggle<CR>    
-nmap		 <leader>t			:TagbarToggle<CR>   
-nmap         <leader>w          :resize 10<CR>
-vmap		 <C-c>				"+y
-vmap         <C-x>              "+x
-
 " Vundle
 set nocompatible               " be iMproved
 filetype off                   " required! /**  从这行开始，vimrc配置 **/
-
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
-
-" My Bundles here:  /* 插件配置格式 */
+" My Bundles here:  
 "   
 " original repos on github （Github网站上非vim-scripts仓库的插件，按下面格式填写）
 " Bundle 'tpope/vim-fugitive'
@@ -87,10 +89,9 @@ Bundle 'gmarik/vundle'
 " Bundle 'FuzzyFinder'
 " Bundle 'Valloric/YouCompleteMe'
 " Plugin 'nvie/vim-flake8'
-" Bundle "davidhalter/jedi"
+" Bundle 'davidhalter/jedi'
 " non github repos   (非上面两种情况的，按下面格式填写)
 " ... 
-
 "                                           /** vundle命令 **/
 " Brief help
 " :BundleList          - list configured bundles
@@ -108,6 +109,16 @@ Bundle 'gmarik/vundle'
 let g:ycm_confirm_extra_conf = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:ycm_autoclose_preview_window_after_completion= 1
+
+" Solarized color
+let g:solarized_termcolors=   256     
+let g:solarized_termtrans =   0       
+let g:solarized_degrade   =   0       
+let g:solarized_bold      =   1       
+let g:solarized_underline =   1       
+let g:solarized_italic    =   1       
+let g:solarized_style     =   "dark"  
+let g:solarized_contrast  =   "normal"
 
 " autoadd code
 function InsertPythonCode()
@@ -165,16 +176,6 @@ func! CompileRunGcc()
         exec "!python %"
         exec "!python %<"
   	endif
-endfunc
-
-" C/C++ debug
-func! Debug()
-	exec "!g++ -g % -o %<"
-	let g:pyclewn_args = "--window=none"
-	exec "Pyclewn"
-	exec "Cfile %<" 
-	exec "Cinferiortty"
-	exec "Cmapkeys"
 endfunc
 
 filetype plugin indent on
