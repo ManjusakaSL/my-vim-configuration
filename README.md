@@ -66,11 +66,11 @@ vim支持python后，参考: https://github.com/Valloric/YouCompleteMe 安装You
 
 以下快捷键未指明模式的都工作在Normal模式
 
-<F3> 				自动插入c++和python首部
+F3					自动插入c++和python首部
 
-<F4> 				调试c/c++, python
+F4					调试c/c++, python
 
-<F5> 				编译运行C/C++, java, python
+F5					编译运行C/C++, java, python
 
 ctrl+a			    全选
 
