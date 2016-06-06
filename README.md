@@ -66,24 +66,24 @@ vim支持python后，参考: https://github.com/Valloric/YouCompleteMe 安装You
 
 以下快捷键未指明模式的都工作在Normal模式
 
-F3					自动插入c++和python首部
+F3                     自动插入c++和python首部
 
-F4					调试c/c++, python
+F4                     调试c/c++, python
 
-F5					编译运行C/C++, java, python
+F5                     编译运行C/C++, java, python
 
-ctrl+a			    全选
+ctrl+a                 全选
 
-ctrl+p			    粘贴粘贴板的内容（粘贴板用于和外部交互）
+ctrl+p                 粘贴粘贴板的内容（粘贴板用于和外部交互）
 
-ctrl+c			    Visual模式下选中之后，复制到粘贴板
+ctrl+c                 Visual模式下选中之后，复制到粘贴板
 
-ctrl+x			    Visual模式下选中之后，剪切到粘贴板
+ctrl+x                 Visual模式下选中之后，剪切到粘贴板
 
-,t				    打开tagbar
+,t	                   打开tagbar
 
-,n				    打开NERDTree
+,n	                   打开NERDTree
 
-\p				    给单词加大括号
+\p	                   给单词加大括号
 
-\c				    给单词加小括号
+\c	                   给单词加小括号
