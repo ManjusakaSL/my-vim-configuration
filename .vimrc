@@ -11,10 +11,14 @@ set tabstop=4
 set shiftwidth=4
 set nobackup
 set background=dark
+colorscheme solarized
 if has('gui_running')
-	colorscheme solarized
-else
-    colorscheme torte
+	set guioptions-=m 			" 隐藏菜单栏
+	set guioptions-=T 			" 隐藏工具栏
+	set guioptions-=L 			" 隐藏左侧滚动条
+	set guioptions-=r 			" 隐藏右侧滚动条
+	set guioptions-=b 			" 隐藏底部滚动条
+	set showtabline=0 			" 隐藏Tab栏	
 endif
 let mapleader=","
 
@@ -24,6 +28,7 @@ map			 <F2>				:!pydoc
 map			 <F3>               :call InsertCode()<CR>
 map          <F4>               :call Debug()<CR>
 map  		 <F5> 				:call CompileRunGcc()<CR>
+map 		 <silent> <F11> 	:call ToggleFullScreen()<CR>
 map			 <C-p>				"+gP
 nmap         \p                 i(<Esc>ea)<Esc> 
 nmap         \c                 i{<Esc>ea}<Esc> 
@@ -178,4 +183,20 @@ func! CompileRunGcc()
   	endif
 endfunc
 
+" gvim fullscreen
+function! ToggleFullScreen()
+    call system("wmctrl -r :ACTIVE: -b toggle,fullscreen")
+endfunction
+
+" pyclewn
+function! Debug()
+    exec "!g++ -g %"
+	let g:pyclewn_args = "--args=-q --gdb=async --window=none"
+	:Pyclewn
+	:Cinferiortty
+	:Cfile a.out
+	:Cmapkeys
+endfunction
+
 filetype plugin indent on
+

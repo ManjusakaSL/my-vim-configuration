@@ -50,6 +50,12 @@ vim支持python后，参考: https://github.com/Valloric/YouCompleteMe 安装You
 
 <-------------------------------------------------pyclewn------------------------------------------------->
 
+加载文件: Cfile filename(必须是可执行文件),这里已经自动添加
+
+指令映射: Cmapkeys，这里已经自动映射
+
+打开Xterm: Cinferiortty，这里已经自动打开
+
 设置断点: Cbreak num 或者　CTRL-b 设置光标所在行为断点
 
 清除光标所在行断点： CTRL-k
